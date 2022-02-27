@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/VR-Shooting-And-Porting.unity
+    guid: d1c3109bdb54ad54c8a2b2838528e640
+  m_configObjects:
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 39a9e2f90f1a1ca43aa604e5ddd5c1d7, type: 2}
+    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 2730873ed25bded459630a526e0dd37c, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4b2f08c25e5382449b4ba8745a5e6bb7, type: 2}
