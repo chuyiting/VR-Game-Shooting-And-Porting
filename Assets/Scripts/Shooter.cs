@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
-using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Shooter : MonoBehaviour
 {
 
 
