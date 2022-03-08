@@ -7,13 +7,12 @@ public class scoreCounter : MonoBehaviour
 {   
     public Text displayedScore;
     public static int score = 0;
-    //public GameObject camera2;
-    //private Vector3 offset;
+    public GameObject canvas;
 
     // Start is called before the first frame update
     void Start()
     {
-       //offset = transform.position - camera2.transform.position;
+        canvas.active = false;
 
     }
 
@@ -21,11 +20,12 @@ public class scoreCounter : MonoBehaviour
     void Update()
     {
         displayedScore.text = score.ToString() + " points";
+
+        if (Input.GetMouseButtonDown(0)) { //map to button on vr
+            canvas.active = true;
+        }
     }
 
-   // void LateUpdate() {
-        //transform.position = camera2.transform.position + offset;
-   // }
 }
 
 //Update UI - put these lines of codes in the scripts whenever we want to update the score. So for shooting down aliens
