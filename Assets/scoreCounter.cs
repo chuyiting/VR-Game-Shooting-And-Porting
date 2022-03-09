@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR;
 
 public class scoreCounter : MonoBehaviour
 {   
     public Text displayedScore;
     public static int score = 0;
     public GameObject canvas;
+    public SteamVR_Action_Boolean displayScoreboard;
 
     // Start is called before the first frame update
     void Start()
     {
-        canvas.active = false;
+        canvas.SetActive(false);
 
     }
 
@@ -21,9 +23,11 @@ public class scoreCounter : MonoBehaviour
     {
         displayedScore.text = score.ToString() + " points";
 
-        if (Input.GetMouseButtonDown(0)) { //map to button on vr
-            canvas.active = true;
-        }
+        if (displayScoreboard.stateDown)
+         {
+             canvas.SetActive(true);
+         }
+      
     }
 
 }
