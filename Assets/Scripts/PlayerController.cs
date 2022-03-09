@@ -7,13 +7,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+
     private void Start()
     {
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
