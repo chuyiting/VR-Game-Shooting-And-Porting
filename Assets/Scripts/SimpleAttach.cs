@@ -31,6 +31,7 @@ public class SimpleAttach : MonoBehaviour
         // GRAB THE OBJECT
         if (interactable.attachedToHand == null && grabType != GrabTypes.None)
         {
+            Debug.Log(grabType);
             hand.AttachObject(gameObject, grabType);
             hand.HoverLock(interactable); // disable hand hover when an object is grabbed
             hand.HideGrabHint();
