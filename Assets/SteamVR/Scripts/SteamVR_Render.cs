@@ -44,6 +44,7 @@ namespace Valve.VR
             if (!isQuitting)
                 return instance.TopInternal();
 
+            Debug.Log("is quitting");
             return null;
         }
 
@@ -99,6 +100,7 @@ namespace Valve.VR
             if (cameras.Length > 0)
                 return cameras[cameras.Length - 1];
 
+            Debug.Log("camera length is zero");
             return null;
         }
 
