@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.vrgameshootingandporting.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\e0418218\\Desktop\\assignment3\\VR-Game-Shooting-And-Porting\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\USER\\Desktop\\vr\\VR-Game-Shooting-And-Porting\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "VR-Game-Shooting-And-Porting [Testing]"

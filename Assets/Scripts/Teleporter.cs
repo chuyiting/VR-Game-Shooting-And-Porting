@@ -6,6 +6,9 @@ using Valve.VR;
 public class Teleporter : MonoBehaviour {
 
     public GameObject m_Pointer;
+    public Material pointerMatOk;
+    public Material pointerMatNotOk;
+    public LayerMask teleporationMask;
     public SteamVR_Action_Boolean m_TeleportAction;
     private SteamVR_Behaviour_Pose m_Pose = null;
     private bool m_HasPosition = false;
@@ -23,7 +26,14 @@ public class Teleporter : MonoBehaviour {
         m_HasPosition = UpdatePointer();
         Vector3 currPos = m_Pointer.transform.position;
        
-        m_Pointer.SetActive(m_HasPosition);
+        if (m_HasPosition)
+        {
+            m_Pointer.GetComponentInChildren<MeshRenderer>().material = pointerMatOk;
+        }
+        else 
+        {
+            m_Pointer.GetComponentInChildren<MeshRenderer>().material = pointerMatNotOk;
+        }
 
         //Teleport
         if (m_TeleportAction.GetStateUp(m_Pose.inputSource)) {
@@ -65,11 +75,33 @@ public class Teleporter : MonoBehaviour {
 
     private bool UpdatePointer() {
         Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit)) {
-            m_Pointer.transform.position = hit.point;
+        RaycastHit hit, block;
+        bool hitTeleportPoint = Physics.Raycast(transform.position, transform.forward, out hit, 30f, teleporationMask);
+        bool hitOtherPoint = Physics.Raycast(transform.position, transform.forward, out block, 30f, ~teleporationMask);
+
+        if (hitTeleportPoint) 
+        {
+            m_Pointer.SetActive(true);
+            if (hitOtherPoint && Vector3.Distance(transform.position, hit.point) > Vector3.Distance(transform.position, block.point))
+            {
+                m_Pointer.transform.position = block.point;
+                m_Pointer.transform.rotation = Quaternion.FromToRotation(m_Pointer.transform.up, block.normal) * m_Pointer.transform.rotation;
+                return false;
+            }
+            m_Pointer.transform.position = new Vector3(hit.point.x, 0.1f, hit.point.z);
+            m_Pointer.transform.rotation = Quaternion.FromToRotation(m_Pointer.transform.up, hit.normal) * m_Pointer.transform.rotation;
             return true;
         }
+
+        if (hitOtherPoint)
+        {
+            m_Pointer.SetActive(true);
+            m_Pointer.transform.position = block.point;
+            m_Pointer.transform.rotation = Quaternion.FromToRotation(m_Pointer.transform.up, block.normal) * m_Pointer.transform.rotation;
+            return false;
+        }
+
+        m_Pointer.SetActive(false);
 
         return false;
     }
